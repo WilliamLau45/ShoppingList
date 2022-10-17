@@ -24,24 +24,24 @@ public class ShoppingListServlet extends HttpServlet {
             throws ServletException, IOException {
         
         HttpSession session = request.getSession();
-        String username = (String) session.getAttribute("username");
+        String username = (String)session.getAttribute("username");
         String action = request.getParameter("action");
 
         if (action != null && action.equals("logout")) {
             session.invalidate();
+            
             session = request.getSession();
-            request.setAttribute("message", "You have logged out!");
+            request.setAttribute("message", "User logged out.");
             getServletContext().getRequestDispatcher("/WEB-INF/register.jsp")
                     .forward(request, response);
         }
 
-        if (username != null) {
+        if (username != null && action == null) {
             session.setAttribute("username", username);
             getServletContext().getRequestDispatcher("/WEB-INF/shoppingList.jsp")
                     .forward(request, response);
         } 
         else {
-            request.setAttribute("message", "Hello! Please enter your username.");
             getServletContext().getRequestDispatcher("/WEB-INF/register.jsp")
                     .forward(request, response);
         }
@@ -56,14 +56,15 @@ public class ShoppingListServlet extends HttpServlet {
         HttpSession session = request.getSession();
         String action = request.getParameter("action");
         String username = request.getParameter("username");
-        String item = request.getParameter("addThis");
-        ArrayList<String> listItems;
+        String item = request.getParameter("addList");
+        
+        ArrayList<String> itemList;
 
-        if (session.getAttribute("listItems") == null) {
-            listItems = new ArrayList();
+        if (session.getAttribute("itemList") == null) {
+            itemList = new ArrayList();
         } 
         else {
-            listItems = (ArrayList) session.getAttribute("listItems");
+            itemList = (ArrayList)session.getAttribute("itemList");
         }
 
         switch (action) {
@@ -74,15 +75,14 @@ public class ShoppingListServlet extends HttpServlet {
                 break;
 
             case "add":
-                listItems.add(item);
-                session.setAttribute("listItems", listItems);
+                itemList.add(item);
+                session.setAttribute("itemList", itemList);
                 response.sendRedirect("ShoppingList");
                 break;
 
             case "delete":
-                item = request.getParameter("item");
-                listItems.remove(item);
-                session.setAttribute("listItems", listItems);
+                itemList.remove(item);
+                session.setAttribute("itemList", itemList);
                 response.sendRedirect("ShoppingList");
                 break;
 

@@ -14,12 +14,15 @@
     <body>
         <h1>Shopping List</h1>
         <form action="" method="post">
-        Username: <input type="text" name="username" value="${username}"> 
+        Username: 
+        <input type="text" name="username" value="${username}"><br>
         
         <input type="submit" value="Register User"> 
         <input type="hidden" name="action" value="register">
+        
         </form><br>
         
         ${message}
+        
     </body>
 </html>
