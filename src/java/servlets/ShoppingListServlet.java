@@ -61,10 +61,10 @@ public class ShoppingListServlet extends HttpServlet {
         ArrayList<String> itemList;
 
         if (session.getAttribute("itemList") == null) {
-            itemList = new ArrayList();
+            itemList= new ArrayList();
         } 
         else {
-            itemList = (ArrayList)session.getAttribute("itemList");
+            itemList= (ArrayList)session.getAttribute("itemList");
         }
 
         switch (action) {
@@ -81,12 +81,12 @@ public class ShoppingListServlet extends HttpServlet {
                 break;
 
             case "delete":
+                item = request.getParameter("item");
                 itemList.remove(item);
                 session.setAttribute("itemList", itemList);
                 response.sendRedirect("ShoppingList");
                 break;
-
-        }
-        
+                
+        } 
     }
 }

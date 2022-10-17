@@ -3,7 +3,7 @@
     Created on : Oct 16, 2022, 10:29:01 PM
     Author     : William Lau
 --%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -18,7 +18,7 @@
         
         <a href="ShoppingList?action=logout">Logout</a>
 
-        <form action="" method="POST">
+        <form action="" method="post">
             <h2>Add Items:</h2>
             
             <input type="text" name="addList">
@@ -26,7 +26,7 @@
             <input type="hidden" name="action" value="add">
         </form>
 
-        <form action=""method="post">
+        <form action="" method="post">
             <ul>
                 <c:forEach items="${itemList}" var="item">
                     <li>
