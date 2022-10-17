@@ -16,7 +16,7 @@
         <form action="" method="post">
         Username: <input type="text" name="username" value="${username}"> 
         
-        <input type="submit" value="registerName"> 
+        <input type="submit" value="Register User"> 
         <input type="hidden" name="action" value="register">
         </form><br>
         

@@ -30,7 +30,7 @@ public class ShoppingListServlet extends HttpServlet {
         if (action != null && action.equals("logout")) {
             session.invalidate();
             session = request.getSession();
-            request.setAttribute("message", "You logged out.");
+            request.setAttribute("message", "You have logged out!");
             getServletContext().getRequestDispatcher("/WEB-INF/register.jsp")
                     .forward(request, response);
         }
@@ -45,6 +45,7 @@ public class ShoppingListServlet extends HttpServlet {
             getServletContext().getRequestDispatcher("/WEB-INF/register.jsp")
                     .forward(request, response);
         }
+
         
     }
 
@@ -55,14 +56,14 @@ public class ShoppingListServlet extends HttpServlet {
         HttpSession session = request.getSession();
         String action = request.getParameter("action");
         String username = request.getParameter("username");
-        String item = request.getParameter("addList");
-        ArrayList<String> itemList;
+        String item = request.getParameter("addThis");
+        ArrayList<String> listItems;
 
-        if (session.getAttribute("itemList") == null) {
-            itemList = new ArrayList();
+        if (session.getAttribute("listItems") == null) {
+            listItems = new ArrayList();
         } 
         else {
-            itemList = (ArrayList) session.getAttribute("itemList");
+            listItems = (ArrayList) session.getAttribute("listItems");
         }
 
         switch (action) {
@@ -73,15 +74,15 @@ public class ShoppingListServlet extends HttpServlet {
                 break;
 
             case "add":
-                itemList.add(item);
-                session.setAttribute("itemList", itemList);
+                listItems.add(item);
+                session.setAttribute("listItems", listItems);
                 response.sendRedirect("ShoppingList");
                 break;
 
             case "delete":
                 item = request.getParameter("item");
-                itemList.remove(item);
-                session.setAttribute("itemList", itemList);
+                listItems.remove(item);
+                session.setAttribute("listItems", listItems);
                 response.sendRedirect("ShoppingList");
                 break;
 
