@@ -1,6 +1,6 @@
 <%-- 
     Document   : shoppinglist
-    Created on : Oct 13, 2022, 9:38:20 AM
+    Created on : Oct 16, 2022, 10:29:01 PM
     Author     : William Lau
 --%>
 
@@ -13,5 +13,30 @@
     </head>
     <body>
         <h1>Shopping List</h1>
+        
+        Hello! ${username}
+        
+        <a href = "ShoppingList?action=logout">Logout</a>
+
+        <form action="" method ="POST">
+            <h2>Add Items:</h2>
+            
+            <input type  ="text" name="addList">
+            <input type ="submit" value ="Add Item">
+            <input type  ="hidden" name="action" value ="add">
+        </form>
+
+        <form action=""method="post">
+            <ul>
+                <c:forEach var ="item" items="${itemList}">
+                    <li> <input type  ="radio" name="item" value ="${item}">${item}</li>
+                </c:forEach>
+            </ul>
+
+            <input type  ="submit"  value ="Delete">
+            <input type  ="hidden" name="action" value ="delete">
+        </form>
+                
+        ${message}
     </body>
 </html>

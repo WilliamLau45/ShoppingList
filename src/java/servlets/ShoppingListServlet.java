@@ -38,7 +38,7 @@ public class ShoppingListServlet extends HttpServlet {
 
         if (username != null && action == null) {
             session.setAttribute("username", username);
-            getServletContext().getRequestDispatcher("/WEB-INF/shoppingList.jsp")
+            getServletContext().getRequestDispatcher("/WEB-INF/shoppinglist.jsp")
                     .forward(request, response);
         } 
         else {
