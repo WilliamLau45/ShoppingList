@@ -16,25 +16,27 @@
         
         Hello! ${username}
         
-        <a href = "ShoppingList?action=logout">Logout</a>
+        <a href="ShoppingList?action=logout">Logout</a>
 
-        <form action="" method ="POST">
+        <form action="" method="POST">
             <h2>Add Items:</h2>
             
-            <input type  ="text" name="addList">
-            <input type ="submit" value ="Add Item">
-            <input type  ="hidden" name="action" value ="add">
+            <input type="text" name="addList">
+            <input type="submit" value="Add Item">
+            <input type="hidden" name="action" value="add">
         </form>
 
         <form action=""method="post">
             <ul>
-                <c:forEach var ="item" items="${itemList}">
-                    <li> <input type  ="radio" name="item" value ="${item}">${item}</li>
+                <c:forEach items="${itemList}" var="item">
+                    <li>
+                        <input type="radio" name="item" value="${item}">${item}
+                    </li>
                 </c:forEach>
             </ul>
 
-            <input type  ="submit"  value ="Delete">
-            <input type  ="hidden" name="action" value ="delete">
+            <input type="submit"  value="Delete">
+            <input type="hidden" name="action" value="delete">
         </form>
                 
         ${message}
